@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Keep</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <div>
+        <video class="bg-video" src="/images/galaxy.mp4" autoplay loop muted playsinline></video>
+    </div>
+
+    <div class="container">
+        <h1>Login To Google Keep</h1>
+        <div>
+            <div>
+                <input type="email" id="confirmemail" placeholder="Enter your email">
+            </div>
+            <div>
+                <input type="password" id="confirmPassword" placeholder="Enter your password">
+            </div>
+            <div>
+            <div class="forget-password">
+                <a href="forgotpassword.html">Forgot Password?</a>
+            </div>
+            <div>
+                <button id="sub" onclick="ClickToLogin()">Login</button>
+            </div>
+            <div class="dont-have-account">
+                <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="login.js"></script>
+
+</html>

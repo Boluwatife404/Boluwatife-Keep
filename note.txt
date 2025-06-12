@@ -1,0 +1,373 @@
+.spinner {
+  width: 40px;
+  height: 40px;
+  background-color: #333;
+
+  margin: 100px auto;
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes sk-rotateplane {
+  0% { 
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
+  } 50% { 
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
+  } 100% { 
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+
+<div class="spinner"></div>
+
+
+
+
+<!-- <div id="note-form" class="card shadow-lg border-0 mx-auto my-4"
+            style="max-width: 600px; padding: 15; width: 100%;">
+            <div class="card-body position-relative">
+
+                <div id="note-input-container" class="note-collapsed card shadow-sm">
+                    <div id="collapsed-view" onclick="expandNote()" class="p-2">
+                        Take a note...
+                    </div>
+
+                    <div id="expanded-view" class="p-3 d-none">
+                        <input type="text" id="note-title" placeholder="Title" class="form-control mb-2">
+                        <textarea id="note-content" placeholder="Take a note..." class="form-control mb-2"></textarea>
+                        <button id="close-note-btn" class="btn btn-sm btn-light" onclick="saveNote()">Close</button>
+                    </div>
+                </div> -->
+
+                <!-- <span class="material-icons position-absolute top-0 end-0 m-2 text-secondary" role="button">
+                    push_pin
+                </span>
+                <input type="text" id="note-title" class="form-control border-0 fw-bold mb-2 p-" placeholder="Title" />
+                <textarea  id="note-content" class="form-control border-0 mb-3" rows="2" placeholder="Take a note..."></textarea> -->
+
+
+
+
+
+function saveNote() {
+  const title = document.getElementById('note-title').value.trim();
+  const content = document.getElementById('note-content').value.trim();
+  console.log('Saving note:', { title, content });
+
+  if (!content) {
+    console.warn('Note content is empty.');
+    return alert('Note content cannot be empty');
+  }
+
+  const noteCard = document.createElement('div');
+  noteCard.className = 'col';
+  noteCard.innerHTML = `
+        <div class="card text-dark">
+          <div class="card-body">
+            <h5 class="card-title">${title}</h5>
+            <p class="card-text">${content}</p>
+          </div>
+        </div>
+      `;
+  document.getElementById('notes-list').appendChild(noteCard);
+
+  console.log('Note added to list.');
+
+  document.getElementById('note-title').value = '';
+  document.getElementById('note-content').value = '';
+}
+
+
+function saveNote() {
+    const title = document.getElementById('note-title').value.trim();
+    const content = document.getElementById('note-content').value.trim();
+
+    if (!title && !content) return; // Don't save empty notes
+
+    const notesList = document.getElementById('notes-list');
+
+    // Create a Bootstrap-style note card
+    const noteCard = document.createElement('div');
+    noteCard.className = 'col';
+
+    noteCard.innerHTML = `
+        <div class="card shadow border-0">
+            <div class="card-body">
+                <h5 class="card-title">${title}</h5>
+                <p class="card-text">${content}</p>
+                <div class="d-flex justify-content-end gap-2">
+                    <span class="material-icons text-muted" role="button" title="Pin">push_pin</span>
+                    <span class="material-icons text-muted" role="button" title="Archive">archive</span>
+                    <span class="material-icons text-muted" role="button" title="Trash">delete</span>
+                </div>
+            </div>
+        </div>
+    `;
+
+    notesList.prepend(noteCard); // Add note at the top
+
+    // Clear input fields
+    document.getElementById('note-title').value = '';
+    document.getElementById('note-content').value = '';
+}
+
+
+function expandNote() {
+  document.getElementById('collapsed-view').classList.add('d-none');
+  document.getElementById('expanded-view').classList.remove('d-none');
+}
+
+function collapseNote() {
+  document.getElementById('collapsed-view').classList.remove('d-none');
+  document.getElementById('expanded-view').classList.add('d-none');
+}
+
+function saveNote() {
+  const title = document.getElementById('note-title').value.trim();
+  const content = document.getElementById('note-content').value.trim();
+
+  if (!title && !content) return collapseNote(); // Don't save empty notes
+
+  const notesList = document.getElementById('notes-list');
+
+  const noteCard = document.createElement('div');
+  noteCard.className = 'col';
+
+  noteCard.innerHTML = `
+    <div class="card shadow border-0">
+      <div class="card-body">
+        <h5 class="card-title">${title}</h5>
+        <p class="card-text">${content}</p>
+        <div class="d-flex justify-content-end gap-2">
+          <span class="material-icons text-muted" role="button" title="Pin">push_pin</span>
+          <span class="material-icons text-muted" role="button" title="Archive">archive</span>
+          <span class="material-icons text-muted" role="button" title="Trash">delete</span>
+        </div>
+      </div>
+    </div>
+  `;
+
+  notesList.prepend(noteCard);
+
+
+  document.getElementById('note-title').value = '';
+  document.getElementById('note-content').value = '';
+
+  collapseNote(); // Collapse the note input back
+}
+
+
+
+
+==================================================
+<!-- <div class="col-md-9">
+            <div id="note-form" class="mb-3">
+                <input id="note-title" class="form-control mb-2" placeholder="Title">
+                <textarea id="note-content" class="form-control mb-2" placeholder="Take a note..."></textarea>
+                <div class="d-flex justify-content-between">
+                    <button id="add-btn" class="btn btn-outline-light" onclick="saveNote()">Close</button>
+                    <button class="btn btn-outline-danger" onclick="clearAllNotes()">Clear All</button>
+                </div>
+            </div>
+
+        <div id="notes-list" class="row row-cols-1 row-cols-md-2 g-4"></div>
+        <div id="archive-list" class="row row-cols-1 row-cols-md-2 g-4 d-none"></div>
+        <div id="trash-list" class="row row-cols-1 row-cols-md-2 g-4 d-none"></div>
+        <div id="reminders-list" class="row row-cols-1 row-cols-md-2 g-4 d-none"></div>
+        <div id="labels-list" class="row row-cols-1 row-cols-md-2 g-4 d-none"></div> -->
+
+        ----------------------------------------------------------
+          <!-- <div class="flex-grow-1">
+            <div class="topbar d-flex justify-content-between align-items-center">
+                <input id="note-input" class="note-input" placeholder="Take a note...">
+                <div>
+                    <button class="btn btn-outline-light">&#x2713;</button>
+                    <button class="btn btn-outline-light">&#x2630;</button>
+                </div>
+            </div>
+        </div> 
+    </div> -->
+
+
+
+
+
+
+
+
+
+    <div class="container">
+        <nav>
+            <div class="logo" id="menu">
+                <img src="/images/menu_.png" alt="menu logo">
+            </div>
+            <div class="keep-logo" id="keep-logo">
+                <img src="/images/keep-logo.png" alt="Google Keep Logo">
+                <h1>Keep</h1>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="search" placeholder="Search">
+                <img src="/images/search_2z24.png" alt="" class="search-icon">
+            </div>
+
+
+        </nav>
+
+    </div>
+    <div class="d-flex">
+        <div class="sidebar p-3">
+            <ul>
+                <li class="active" id="tab-notes" onclick="switchTab('notes')">Notes</li>
+                <li id="tab-reminders" onclick="switchTab('reminders')">Reminders</li>
+                <li id="tab-labels" onclick="switchTab('labels')">Edit labels</li>
+                <li id="tab-archive" onclick="switchTab('archive')">Archive</li>
+                <li id="tab-trash" onclick="switchTab('trash')">Trash</li>
+            </ul>
+        </div>
+
+
+
+
+        <div class="col-md-9">
+            <div id="note-input-container" class="card shadow-sm bg-dark text-white mb-3">
+
+                <!-- Collapsed View -->
+                <div id="collapsed-view" class="p-3 bg-secondary text-white rounded" onclick="expandNote()"
+                    style="cursor: text;">
+                    Take a note...
+                </div>
+
+                <!-- Expanded View (Initially Hidden) -->
+                <!-- <div id="expanded-view" class="p-3 d-none">
+                    <input type="text" id="note-title" placeholder="Title"
+                        class="form-control mb-2 bg-secondary text-white border-0">
+                    <textarea id="note-content" placeholder="Take a note..."
+                        class="form-control mb-2 bg-secondary text-white border-0"></textarea>
+
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-outline-light btn-sm" onclick="saveNote()">Close</button>
+                        <button class="btn btn-outline-danger btn-sm" onclick="clearAllNotes()">Clear All</button>
+                    </div>
+                </div> -->
+
+                
+                <div id="expanded-view" class="p-3 d-none">
+                    <input type="text" id="note-title" placeholder="Title"
+                        class="form-control mb-2 bg-secondary text-white border-0">
+
+                    <textarea id="note-content" placeholder="Take a note..."
+                        class="form-control mb-2 bg-secondary text-white border-0"></textarea>
+
+
+
+                    <div class="d-flex align-items-center justify-content-between mt-2">
+                        <div class="d-flex gap-2 text-muted">
+                            <!-- <span class="material-icons" role="button" title="fonts">formatting option</span> -->
+                            <span class="material-icons" role="button" title="Remind me">add_alert</span>
+                            <span class="material-icons" role="button" title="Collaborator">person_add</span>
+                            <span class="material-icons" role="button" title="Background options" id="addbackgrondcol">palette</span>
+                            <span class="material-icons" role="button" title="Checkbox">check_box</span>
+                            <span class="material-icons" role="button" title="Add image" id="addimage">image</span>
+                            <span class="material-icons" role="button" title="Archive" id="addtoarchive">archive</span>
+                        </div>
+
+                        <button id="close-note-btn" class="btn btn-sm text-primary fw-semibold"
+                            onclick="saveNote()">Close</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Notes Sections -->
+            <div id="notes-list" class="row row-cols-1 row-cols-md-2 g-4"></div>
+            <div id="archive-list" class="row row-cols-1 row-cols-md-2 g-4 d-none"></div>
+            <div id="trash-list" class="row row-cols-1 row-cols-md-2 g-4 d-none"></div>
+            <div id="reminders-list" class="row row-cols-1 row-cols-md-2 g-4 d-none"></div>
+            <div id="labels-list" class="row row-cols-1 row-cols-md-2 g-4 d-none"></div>
+        </div>
+    </div>
+
+</body>
+
+
+
+
+
+
+const tabs = ['notes', 'reminders', 'labels', 'archive', 'trash'];
+
+function switchTab(tab) {
+  tabs.forEach(t => {
+    document.getElementById(`tab-${t}`).classList.remove('active');
+  });
+  document.getElementById(`tab-${tab}`).classList.add('active');
+  console.log(`Switched to ${tab} tab.`);
+}
+
+
+function expandNote() {
+  document.getElementById('collapsed-view').classList.add('d-none');
+  document.getElementById('expanded-view').classList.remove('d-none');
+  document.getElementById('note-title').focus(); // Auto-focus title input
+}
+
+function saveNote() {
+  const title = document.getElementById('note-title').value.trim();
+  const content = document.getElementById('note-content').value.trim();
+
+  if (!title && !content) {
+    closeNote();
+    return;
+  }
+
+  const notesList = document.getElementById('notes-list');
+
+  const noteCard = document.createElement('div');
+  noteCard.className = 'col';
+
+  noteCard.innerHTML = `
+    <div class="card text-white bg-dark border-light shadow">
+      <div class="card-body">
+        <h5 class="card-title">${title || '(No Title)'}</h5>
+        <p class="card-text">${content}</p>
+        <div class="d-row justify-content-end gap-2">
+          <span class="material-icons text-light" role="button" title="Pin">push_pin</span>
+          <span class="material-icons text-light" role="button" title="Archive">archive</span>
+          <span class="material-icons text-light" role="button" title="Trash">delete</span>
+        </div>
+      </div>
+    </div>
+  `;
+
+  notesList.prepend(noteCard);
+  clearNoteFields();
+  closeNote();
+}
+
+
+
+
+// function clearNoteFields() {
+//   document.getElementById('note-title').value = '';
+//   document.getElementById('note-content').value = '';
+// }
+
+// function clearAllNotes() {
+//   if (confirm("Are you sure you want to delete all notes?")) {
+//     document.getElementById('notes-list').innerHTML = '';
+//   }
+// }
+
+// function closeNote() {
+//   document.getElementById('collapsed-view').classList.remove('d-none');
+//   document.getElementById('expanded-view').classList.add('d-none');
+// }
