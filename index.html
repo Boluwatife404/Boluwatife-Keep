@@ -4,205 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boluwatife Google Keep</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Google Keep</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- <div>
+
+    <div>
         <video class="bg-video" src="/images/galaxy.mp4" autoplay loop muted playsinline></video>
-    </div> -->
-
-    <div id="dashboard">
-      
-        
-        <div class="sidebar bg-white border-end position-fixed h-100" style="width: 280px; z-index: 1000;">
-            <div class="p-3">
-                <div class="d-flex align-items-center mb-4">
-                    <img src="/images/keep-logo.png" alt="">
-                    <!-- <i class="fas fa-sticky-note text-primary me-2 fs-4"></i> -->
-                    <h4 class="mb-0">Boluwatife KEEP</h4>
-                </div>
-                <nav class="nav flex-column">
-                    <a class="nav-link active d-flex align-items-center py-2" href="#" data-section="notes">
-                        <i class="fas fa-sticky-note me-3"></i>Notes
-                    </a>
-                    <a class="nav-link d-flex align-items-center py-2" href="#" data-section="reminders">
-                        <i class="fas fa-bell me-3"></i>Reminders
-                    </a>
-                    <a class="nav-link d-flex align-items-center py-2" href="#" data-section="labels">
-                        <i class="fas fa-tag me-3"></i>Edit labels
-                    </a>
-                    <a class="nav-link d-flex align-items-center py-2" href="#" data-section="archive">
-                        <i class="fas fa-archive me-3"></i>Archive
-                    </a>
-                    <a class="nav-link d-flex align-items-center py-2" href="#" data-section="trash">
-                        <i class="fas fa-trash me-3"></i>Trash
-                    </a>
-                </nav>
+    </div>
+    <div class="container">
+        <h1>Welcome To Boluwatife Google Keep</h1>
+        <div class="together">
+            <div>
+                <input type="text" id="firstname" placeholder="Enter Your First Name">
             </div>
-        </div>
+            <div>
+                <input type="text" id="lastname" placeholder="Enter Your Last Name">
+            </div>
+            <div>
+                <input type="text" id="phonenumber" placeholder="Phone Number">
+            </div>
+            <div>
+                <input type="email" name="" id="email" placeholder="Enter Your Email">
+            </div>
+            <div>
+                <input type="password" name="" id="enterPassword" placeholder="Enter Your password">
+            </div>
+            <div>
+                <input type="password" name="" id="confirmPassword" placeholder="Re-Enter Your password">
+            </div>
+            <div>
+                <p>All ready have account? <a href="login.html">login </a></p>
+            </div>
+            <div class="Register">
+                <button id="submitBtn" onclick="ClickToRegister()">
+                    <span class="btn-text">Submit</span>
+                    <div id="loader" class="loader"></div>
+                </button>
+            </div>
+            <div class="marquee">
+                <span>
+                    Welcome To Boluwatife Google Keep
+                </span>
+            </div>
+            <!-- <div style=" color: rgb(10, 1, 1); background-color: red; text-decoration: red;">
+                <a href="dashboard.html"> Login Sign Up may not work correctly click here to go to Boluwatife Google Keep</a>
+            </div> -->
 
-      
-
-
-        <div class="main-content" style="margin-left: 280px;">
-           
-
-
-            <header class="bg-white border-bottom sticky-top">
-                <div class="container-fluid">
-                    <div class="row align-items-center py-3">
-                        <div class="col-auto">
-                            <button class="btn btn-link p-0 me-3" id="sidebarToggle">
-                                <i class="fas fa-bars"></i>
-                            </button>
-                        </div>
-                        <div class="col">
-                            <div class="position-relative" style="max-width: 600px;">
-                                <i class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-                                <input type="text" class="form-control ps-5 border-0 bg-light" placeholder="Search" id="searchInput">
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <div class="d-flex align-items-center">
-                                <button class="btn btn-link p-2 me-2">
-                                    <i class="fas fa-sync-alt"></i>
-                                </button>
-                                <button class="btn btn-link p-2 me-2">
-                                    <i class="fas fa-th"></i>
-                                </button>
-                                <button class="btn btn-link p-2 me-3">
-                                    <i class="fas fa-cog"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-          
-
-
-            <main class="container-fluid py-4">
-                <div class="row justify-content-center">
-                    <div class="col-lg-10 col-xl-8">
-
-
-
-                        <div class="card mb-4" id="createNoteCard">
-                            <div class="card-body">
-                                <div id="createNotePlaceholder" class="d-flex align-items-center text-muted" style="cursor: pointer;">
-                                    <i class="fas fa-plus me-2"></i>
-                                    <span>Take a note...</span>
-                                </div>
-                                <div id="createNoteForm" class="d-none">
-                                    <input type="text" class="form-control border-0 fs-5 fw-bold mb-3" placeholder="Title" id="noteTitle">
-                                    <textarea class="form-control border-0" rows="3" placeholder="Take a note..." id="noteContent"></textarea>
-                                    <div id="noteImageContainer" class="mb-3 d-none">
-                                        <img id="noteImage" class="img-fluid rounded" style="max-height: 200px;">
-                                        <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2" id="removeImage">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </div>
-                                    <div class="d-flex align-items-center mb-3">
-                                        <button type="button" class="btn btn-danger p-2 margin-top btn-link p-0 me-3" id="addImageBtn">
-                                            <i class=" me-1"></i>Add Image
-                                        </button>
-                                        <input type="file" id="imageInput" accept="image/*" class="d-none">
-                                    </div>
-                                    <div class="d-flex align-items-center mb-3">
-                                        <div class="color-picker d-flex gap-1" id="colorPicker">
-                                            <div class="color-option" data-color="#ffffff" style="background-color: #ffffff;"></div>
-                                            <div class="color-option" data-color="#f8f9fa" style="background-color: #f8f9fa;"></div>
-                                            <div class="color-option" data-color="#fff2cc" style="background-color: #fff2cc;"></div>
-                                            <div class="color-option" data-color="#d9ead3" style="background-color: #d9ead3;"></div>
-                                            <div class="color-option" data-color="#d0e0e3" style="background-color: #d0e0e3;"></div>
-                                            <div class="color-option" data-color="#cfe2f3" style="background-color: #cfe2f3;"></div>
-                                            <div class="color-option" data-color="#e1d5f0" style="background-color: #e1d5f0;"></div>
-                                            <div class="color-option" data-color="#fce5cd" style="background-color: #fce5cd;"></div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex gap-2">
-                                        <button type="button" class="btn btn-primary flex-fill" id="saveNoteBtn">
-                                            <i class=" fa-save me-1"></i>Save Note
-                                        </button>
-                                        <button type="button" class="btn btn-outline-secondary flex-fill" id="cancelNoteBtn">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        
-
-
-                        <div id="notesContainer">
-                            <div id="emptyState" class="text-center py-5">
-                                <i class="fas fa-sticky-note text-muted" style="font-size: 4rem;"></i>
-                                <h3 class="text-muted mt-3">No notes yet</h3>
-                                <p class="text-muted">Create your first note to get started!</p>
-                            </div>
-                            <div id="notesGrid" class="notes-grid d-none"></div>
-                        </div>
-                    </div>
-                </div>
-            </main>
+            <!-- <div class="Register">
+                <button type="button" onclick="ClickToRegister()">Submit</button>
+                <div id="loader" class="loader" style="display: none;"></div>
+            </div> -->
         </div>
     </div>
-
- 
-
-
-    <div class="modal fade" id="editNoteModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="text" class="form-control border-0 fs-5 fw-bold mb-3" placeholder="Title" id="editNoteTitle">
-                    <textarea class="form-control border-0" rows="5" placeholder="Take a note..." id="editNoteContent"></textarea>
-                    <div id="editNoteImageContainer" class="mb-3 d-none">
-                        <img id="editNoteImage" class="img-fluid rounded" style="max-height: 200px;">
-                        <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2" id="removeEditImage">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                    <div class="d-flex align-items-center mb-3">
-                        <button type="button" class="btn btn-link p-0 me-3" id="editAddImageBtn">
-                            <i class="fas fa-image me-1"></i>Change Image
-                        </button>
-                        <input type="file" id="editImageInput" accept="image/*" class="d-none">
-                    </div>
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="color-picker d-flex gap-1" id="editColorPicker">
-                            <div class="color-option" data-color="#ffffff" style="background-color: #ffffff;"></div>
-                            <div class="color-option" data-color="#f8f9fa" style="background-color: #f8f9fa;"></div>
-                            <div class="color-option" data-color="#fff2cc" style="background-color: #fff2cc;"></div>
-                            <div class="color-option" data-color="#d9ead3" style="background-color: #d9ead3;"></div>
-                            <div class="color-option" data-color="#d0e0e3" style="background-color: #d0e0e3;"></div>
-                            <div class="color-option" data-color="#cfe2f3" style="background-color: #cfe2f3;"></div>
-                            <div class="color-option" data-color="#e1d5f0" style="background-color: #e1d5f0;"></div>
-                            <div class="color-option" data-color="#fce5cd" style="background-color: #fce5cd;"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="updateNoteBtn">
-                        <i class="fas fa-save me-1"></i>Save Changes
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
 </body>
+
+<script src="script.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
 </html>

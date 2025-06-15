@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Keep</title>
     <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
 </head>
 
 <body>
@@ -26,16 +28,20 @@
             <div class="forget-password">
                 <a href="forgotpassword.html">Forgot Password?</a>
             </div>
-            <div>
-                <button id="sub" onclick="ClickToLogin()">Login</button>
+            <div class="Register">
+                <button id="sub" onclick="ClickToLogin()">
+                 <span class="btn-text">Submit</span>
+                    <div id="loader" class="loader"></div>
+                </button>
             </div>
             <div class="dont-have-account">
-                <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+                <p>Don't have an account? <a href="index.html">Sign Up</a></p>
             </div>
         </div>
     </div>
 </body>
 
 <script src="login.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 </html>
